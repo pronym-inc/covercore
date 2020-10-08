@@ -4,7 +4,7 @@ from covercore.conf.generic.settings import *  # noqa
 DEBUG = False
 DEBUG_STATIC_FILES = False
 
-ALLOWED_HOSTS = ['changemetotheproductiondomain.com']
+ALLOWED_HOSTS = ['api.covercore.com']
 
 LOGGING = {
     'version': 1,
