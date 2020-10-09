@@ -1,7 +1,7 @@
 from covercore.conf.generic.settings import *  # noqa
 
 
-DEBUG = False
+DEBUG = RAISE_ON_500 = True
 DEBUG_STATIC_FILES = False
 
 ALLOWED_HOSTS = ['api.covercore.com']
