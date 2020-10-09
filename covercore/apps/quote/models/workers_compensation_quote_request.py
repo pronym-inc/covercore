@@ -5,7 +5,7 @@ class WorkersCompensationQuoteRequest(models.Model):
     api_account = models.ForeignKey(
         'pronym_api.ApiAccount',
         on_delete=models.CASCADE,
-        related_name='workers_compensation_quote_request',
+        related_name='workers_compensation_quote_requests',
         editable=False
     )
     commercial_name = models.CharField(max_length=255)
