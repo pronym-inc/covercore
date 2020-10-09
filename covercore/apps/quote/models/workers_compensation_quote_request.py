@@ -6,7 +6,8 @@ class WorkersCompensationQuoteRequest(models.Model):
         'pronym_api.ApiAccount',
         on_delete=models.CASCADE,
         related_name='workers_compensation_quote_requests',
-        editable=False
+        editable=False,
+        null=True
     )
     commercial_name = models.CharField(max_length=255)
     communications_contact_name = models.CharField(max_length=255)
