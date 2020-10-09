@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django_extensions',
     'gunicorn',
     'pronym_api',
-    'covercore.apps.core'
+    'covercore.apps.core',
+    'covercore.apps.quote'
 ]
 
 MIDDLEWARE = [

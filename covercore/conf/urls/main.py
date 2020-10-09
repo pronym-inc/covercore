@@ -9,6 +9,11 @@ admin.autodiscover()
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'quote/',
+        include(
+            ('covercore.apps.quote.urls',
+             'covercore.apps.quote'),
+            namespace='quote')),
     url(r'',
         include(
             ('covercore.apps.core.urls',
