@@ -11,9 +11,9 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'',
         include(
-            ('genesishealth.apps.readings.urls',
-             'genesishealth.apps.readings'),
-            namespace='readings')),
+            ('covercore.apps.core.urls',
+             'covercore.apps.core'),
+            namespace='core')),
 ]
 
 if settings.DEBUG_STATIC_FILES:
