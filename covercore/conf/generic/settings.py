@@ -1,17 +1,27 @@
 import json
 import os
 
-from datetime import date
+import requests
 
-from django.conf.global_settings import STATICFILES_FINDERS
+# Download secrets from remote server if we have a pronym secrets token.
+if 'PRONYM_SECRETS_TOKEN' in os.environ:
+    pronym_secrets_url = 'https://secrets.pronym.com/core/application/covercore/configuration/localdev/secrets/'
 
-from kombu.utils.url import safequote
-
-secrets_path = '/etc/secrets.json'
-try:
-    secrets = json.load(open(secrets_path))
-except FileNotFoundError:
-    secrets = {}
+    response = requests.get(
+        pronym_secrets_url,
+        headers={'Authorization': f'Token {os.environ["PRONYM_SECRETS_TOKEN"]}'}
+    )
+    if response.status_code >= 400:
+        print(f'Received an error code when trying to retrieve secrets: {response.status_code} {response.text}')
+        sys.exit()
+    secrets = response.json()
+    print('Loaded secrets from localdev remote configuration on pronym secrets.')
+else:
+    secrets_path = '/etc/secrets.json'
+    try:
+        secrets = json.load(open(secrets_path))
+    except FileNotFoundError:
+        secrets = {}
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -165,3 +175,9 @@ JWT_SUB = 'coverc'
 JWT_ISS = 'covercore'
 JWT_AUD = 'covercoreapi'
 USE_HTTPS = True
+
+HARTFORD_API_USERNAME = secrets['api_username']
+HARTFORD_API_PASSWORD = secrets['api_password']
+HARTFORD_PRODUCER_CODE = secrets['producer_code']
+HARTFORD_CLIENT_ID = secrets['client_id']
+HARTFORD_CLIENT_SECRET = secrets['client_secret']

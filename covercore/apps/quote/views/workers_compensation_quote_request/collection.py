@@ -9,6 +9,7 @@ from pronym_api.views.model_view.modelform import LazyModelForm
 from pronym_api.views.model_view.views import ModelCollectionApiView
 
 from covercore.apps.quote.models import WorkersCompensationQuoteRequest
+from covercore.apps.quote.service.hartford_client import CoverCoreHartfordClient
 
 
 class CreateWorkersCompensationQuoteRequestResourceAction(CreateModelResourceAction[WorkersCompensationQuoteRequest]):
@@ -19,6 +20,8 @@ class CreateWorkersCompensationQuoteRequestResourceAction(CreateModelResourceAct
         if account_member is not None:
             obj.api_account = account_member.api_account
         obj.save()
+        service = CoverCoreHartfordClient()
+        service.send_workers_compensation_quote_request(obj)
         return obj
 
 

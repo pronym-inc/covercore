@@ -31,3 +31,6 @@ class WorkersCompensationQuoteRequest(models.Model):
     spectrum_class_code = models.CharField(max_length=255)
     effective_date = models.DateField()
     business_start_year = models.PositiveIntegerField()
+
+    quote_received = models.BooleanField(default=False, editable=False)
+    premium = models.PositiveIntegerField(null=True, blank=True)
