@@ -15,8 +15,7 @@ class CreateWorkersCompensationQuoteRequestResourceAction(CreateModelResourceAct
 
     def _save_form(self, form: LazyModelForm, request: Dict[str, Any], account_member: Optional[ApiAccountMember],
                    resource: WorkersCompensationQuoteRequest) -> WorkersCompensationQuoteRequest:
-        form.is_valid()
-        obj = form.save(commit=False)
+        obj = super()._save_form(form, request, account_member, resource)
         if account_member is not None:
             obj.api_account = account_member.api_account
         obj.save()
