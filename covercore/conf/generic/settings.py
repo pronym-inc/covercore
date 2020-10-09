@@ -159,3 +159,8 @@ MANAGERS = ADMINS
 
 USE_TZ = True
 TIME_ZONE = 'America/Chicago'
+
+JWT_SUB = 'coverc'
+JWT_ISS = 'covercore'
+JWT_AUD = 'covercoreapi'
+USE_HTTPS = True
